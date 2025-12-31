@@ -1,5 +1,3 @@
-// import com.vanniktech.maven.publish.SonatypeHost
-
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -70,12 +68,9 @@ mavenPublishing {
         }
     }
 
-    // 3. 发布目标：选择新版的 Central Portal
-    // 由于环境实际解析到的插件版本较旧，下方代码会报错 Unresolved reference: SonatypeHost
-    // publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
-    
-    // 临时测试：传入 boolean 值可以编译通过，说明实际生效的插件版本较旧（旧版本支持 boolean 参数）
-    publishToMavenCentral(true, true)
+    // 3. 发布目标：Maven Central (New API: 0.35.0+)
+    // 无需参数，默认指向 Central Portal
+    publishToMavenCentral()
 
     // 4. 自动签署：它会自动寻找 gradle.properties 中的 signing.* 信息
     signAllPublications()
